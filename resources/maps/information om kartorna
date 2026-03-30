@@ -1,0 +1,35 @@
+Storleken på allting beskriv i RxK
+(K = kolumner) (R = rader)
+
+TestMap: 
+Används för att testa funktioner och block i spelet
+01: kollar kollision mellan tiles, 18x32
+
+Rooms:
+Rum som bygger upp själva banan
+Ex. 0_01 Basic rum, 12x16
+Tanken är att dem är numreared så är det en 0 först finns det 1 ingång 
+
+MainMap:
+0 = empty/filled with blocks
+1 = room
+
+A = basic rum sätter ihop för vänster till höger
+B = basic rum sätter ihop topp och botten
+C = basic rum, turn variant'
+D = basic rum, tre ingångar och utgångar variant vänster och höger, extra utgång topp
+E = end rum
+F = basic rum, tre ingångar och utvångar variant topp och botten, extra utgång vänster
+G = basic rum, 4 ut och ingångar
+H = basic rum, en ingång, vänster
+I = basic rum, en ingång, top
+S = start rum
+
+1 = ingen ändring på rummet
+2 = rummets kolumner bytas ex. fem kolumner kolumn 1 blir då kolumn 5 och vice versa
+3 = rummets rader bytas
+4 = rummets kolumner och rader bytas
+
+
+StartRum: 
+
