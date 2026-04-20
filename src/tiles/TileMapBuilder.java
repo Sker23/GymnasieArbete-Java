@@ -6,9 +6,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import gameView.Drawable;
 import gameView.GameView;
 import helpClasses.Transform2DArrays;
-import main.Drawable;
 
 public class TileMapBuilder implements Drawable{
 	private Tile[] tiles;
@@ -55,6 +55,7 @@ public class TileMapBuilder implements Drawable{
 			System.out.println(e);
 		}
 	}
+	
 	private void buildTileMap(String[][] map) {
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[i].length; j++) {
@@ -160,12 +161,12 @@ public class TileMapBuilder implements Drawable{
 
 	public void draw(Graphics2D g) {
 		int leftCol = gw.getCamera().getXPos()/tileSize;
-		int rightCol = (gw.getCamera().getXPos()+gw.getWidth())/tileSize + 1;
+		int rightCol = (gw.getCamera().getXPos()+gw.getWidth())/tileSize;
 		int topRow = gw.getCamera().getYPos()/tileSize;
-		int bottomRow = (gw.getCamera().getYPos()+gw.getHeight())/tileSize + 1 ;
+		int bottomRow = (gw.getCamera().getYPos()+gw.getHeight())/tileSize;
 
-		for (int row = topRow; row < bottomRow; row++) {
-			for (int col = leftCol; col < rightCol; col++) {
+		for (int row = topRow; row <= bottomRow; row++) {
+			for (int col = leftCol; col <= rightCol; col++) {
 				int x = tileSize*col;
 				int y = tileSize*row;
 

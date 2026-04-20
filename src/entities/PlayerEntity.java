@@ -3,11 +3,13 @@ package entities;
 import java.awt.Image;
 
 import main.CollisionChecker;
+import weapons.Spear;
 
 public class PlayerEntity extends Entity {
 	private boolean jump = false;	
 	private double jumpHeight;
 	private double jumpVelocity;
+	private Spear spear;
 
 	public PlayerEntity(Image img, double xPos, double yPos, int speed) {
 		super(img, xPos, yPos, speed);

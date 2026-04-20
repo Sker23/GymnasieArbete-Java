@@ -7,7 +7,7 @@ Används för att testa funktioner och block i spelet
 
 Rooms:
 Rum som bygger upp själva banan
-Ex. 0_01 Basic rum, 12x16
+Ex. 0_01 Basic rum, 9x11
 Tanken är att dem är numreared så är det en 0 först finns det 1 ingång 
 
 MainMap:
@@ -29,7 +29,4 @@ S = start rum
 2 = rummets kolumner bytas ex. fem kolumner kolumn 1 blir då kolumn 5 och vice versa
 3 = rummets rader bytas
 4 = rummets kolumner och rader bytas
-
-
-StartRum: 
 

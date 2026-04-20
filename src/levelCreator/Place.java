@@ -1,10 +1,10 @@
 package levelCreator;
 
-public class Point {
+public class Place {
 	private int row;
 	private int col;
 	
-	public Point(int row, int col) {
+	public Place(int row, int col) {
 		this.row = row;
 		this.col = col;
 	}

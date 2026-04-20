@@ -69,8 +69,6 @@ public class CollisionChecker {
 				entity.setY(newTopRow*tileSize+hitbox.height);
 			}
 		}
-
 	}
-
 }
 

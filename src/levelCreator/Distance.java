@@ -3,17 +3,17 @@ package levelCreator;
 import java.util.ArrayList;
 
 public class Distance {
-	private ArrayList<Point> rooms = new ArrayList<>();
+	private ArrayList<Place> rooms = new ArrayList<>();
 	
 	public void addRoom(int row, int col) {
-		rooms.add(new Point(row, col));
+		rooms.add(new Place(row, col));
 	}
 	
-	public ArrayList<Point> getRooms() {
+	public ArrayList<Place> getRooms() {
 		return rooms;
 	}
 	
-	public Point getRoom(int index) {
+	public Place getRoom(int index) {
 		return rooms.get(index);
 	}
 	

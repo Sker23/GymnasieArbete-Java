@@ -10,8 +10,8 @@ import java.io.InputStreamReader;
 
 import javax.imageio.ImageIO;
 
+import gameView.Drawable;
 import gameView.GameView;
-import main.Drawable;
 
 public class TileManager implements Drawable{
 	private int x;

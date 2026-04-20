@@ -9,9 +9,9 @@ public class MapMaker {
 	private int col;
 	private int roomCount;
 
-	private ArrayList<Point> rooms;
-	private Point start;
-	private Point end;
+	private ArrayList<Place> rooms;
+	private Place start;
+	private Place end;
 
 	public MapMaker(int row, int col) {
 		this.row = row;
@@ -40,7 +40,7 @@ public class MapMaker {
 
 	private void generateRooms() {
 		map[row/2][col/2] = "1";
-		rooms.add(new Point(row/2, col/2));
+		rooms.add(new Place(row/2, col/2));
 
 		int newR = 0;
 		int newC = 0;
@@ -74,7 +74,7 @@ public class MapMaker {
 			//om den är validerad läggs den till som ett rum annars börjar den om och försöker hitta en ny giltig plats
 			if (isValid(newR, newC)) {
 				map[newR][newC] = "1";
-				rooms.add(new Point(newR, newC));
+				rooms.add(new Place(newR, newC));
 				//System.out.println(i);
 			} else {
 				i--;
@@ -121,25 +121,25 @@ public class MapMaker {
 	 * */
 	private void placeStartAndEnd() {	
 		//hittar och sätter ut start
-		Point fromCenter = findFarthest(row/2, col/2); //hittar längsta path från center
+		Place fromCenter = findFarthest(row/2, col/2); //hittar längsta path från center
 
 		if (map[fromCenter.getRow()][fromCenter.getCol()-1] != "1") {
 			map[fromCenter.getRow()][fromCenter.getCol()-1] = "S2";
-			start = new Point(fromCenter.getRow(),fromCenter.getCol()-1);
+			start = new Place(fromCenter.getRow(),fromCenter.getCol()-1);
 		} else {
 			map[fromCenter.getRow()][fromCenter.getCol()+1] = "S1";
-			start = new Point(fromCenter.getRow(),fromCenter.getCol()+1);
+			start = new Place(fromCenter.getRow(),fromCenter.getCol()+1);
 		}
 
 		//hittar och sätter ut slutet baserat på start
-		Point fromStart =  findFarthest(start.getRow(), start.getCol()); //hittar längsta path från start
+		Place fromStart =  findFarthest(start.getRow(), start.getCol()); //hittar längsta path från start
 
 		if (map[fromStart.getRow()][fromStart.getCol()+1] != "1") {
 			map[fromStart.getRow()][fromStart.getCol()+1] = "E1";
-			end = new Point(fromStart.getRow(),fromStart.getCol()+1);
+			end = new Place(fromStart.getRow(),fromStart.getCol()+1);
 		} else {
 			map[fromStart.getRow()][fromStart.getCol()-1] = "E2";
-			end = new Point(fromStart.getRow(),fromStart.getCol()-1);
+			end = new Place(fromStart.getRow(),fromStart.getCol()-1);
 		}
 	}
 
@@ -147,7 +147,7 @@ public class MapMaker {
 	 * hittar punkten längst ifrån förbestämd startpunkt
 	 * @param startRow vilket är startpunktens rad, startcol vilket är startpunktens kolumn
 	 * */
-	private Point findFarthest(int startRow, int startCol) {
+	private Place findFarthest(int startRow, int startCol) {
 		ArrayList<Distance> dist = new ArrayList<>();
 		dist.add(new Distance());
 		dist.get(0).addRoom(startRow, startCol);
@@ -161,13 +161,13 @@ public class MapMaker {
 
 		//letar rum tills den inte kan hitta fler och då är det rum med längst path från start hittad
 		while(found == false) {
-			ArrayList<Point> rooms = dist.get(index).getRooms();
+			ArrayList<Place> rooms = dist.get(index).getRooms();
 			dist.add(new Distance());
 
 			index++;
 			found = true;
 
-			for (Point point : rooms) { //tar alla rum från ett index och loppar igenom dem för att finna giltiga vägar
+			for (Place point : rooms) { //tar alla rum från ett index och loppar igenom dem för att finna giltiga vägar
 				for (int[] d  : dir) {
 					int newR = point.getRow() + d[0];
 					int newC = point.getCol() + d[1];
@@ -182,7 +182,7 @@ public class MapMaker {
 			}
 		}
 
-		Point farthest = dist.get(index-1).getRoom(0);
+		Place farthest = dist.get(index-1).getRoom(0);
 
 		return farthest;
 	}
@@ -192,7 +192,7 @@ public class MapMaker {
 	 */
 	private void placeRoomTypes() {
 		
-		for (Point point : rooms) {
+		for (Place point : rooms) {
 			int curR = point.getRow();
 			int curC = point.getCol();
 					
@@ -253,7 +253,7 @@ public class MapMaker {
 					} else {
 						map[curR][curC] = "D3";
 					}
-				} else if(top && bottom) {
+				} else {
 					if(left) {
 						map[curR][curC] = "F1";
 					} else {
@@ -279,11 +279,11 @@ public class MapMaker {
 		return roomCount;
 	}
 	
-	public Point getStart() {
+	public Place getStart() {
 		return start;
 	}
 	
-	public Point getEnd() {
+	public Place getEnd() {
 		return end;
 	}
 }

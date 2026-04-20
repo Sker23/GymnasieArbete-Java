@@ -30,7 +30,21 @@ public class GameModel {
 	}
 	
 	private void loadTiles(GameView gameScreen) {
-		dungeonMap = new MapMaker(16, 16);
+		dungeonMap = new MapMaker(15, 17);
+		
+		/*String[][] map = dungeonMap.getMap();
+		
+		for (int i = 0; i < map.length; i++) {
+		    for (int j = 0; j < map[i].length; j++) {
+		    	if (map[i][j] != "0") {
+		    		System.out.print(map[i][j] + " ");
+				} else {
+					System.out.print(map[i][j] + "  ");
+				}
+		    	//System.out.print(map[i][j] + " ");
+		    }
+		    System.out.print("\n");
+		}*/
 		
 		tiles = new TileLoader(gameScreen);
 		tileM = new TileMapBuilder(dungeonMap.getMap(), gameScreen, tiles.getTiles());
@@ -44,7 +58,7 @@ public class GameModel {
 		double x = dungeonMap.getStart().getCol()*tileM.getRoomCol()*32+96;
 		double y = dungeonMap.getStart().getRow()*tileM.getRoomRow()*32+96;
 		
-		player = new PlayerEntity(ghostImg, x, y, 150);
+		player = new PlayerEntity(ghostImg, x, y, 170);
 
 		spriteList.add(player);
 		spriteList.add(new PlayerEntity(shipImg, x, y, 100));

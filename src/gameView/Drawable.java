@@ -1,4 +1,4 @@
-package main;
+package gameView;
 
 import java.awt.Graphics2D;
 

@@ -7,8 +7,6 @@ import java.util.Collection;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-import main.Drawable;
-
 public class GameView {
 	private int height, width;
 	private String title;
@@ -20,7 +18,6 @@ public class GameView {
 	private BufferStrategy backBuffer;
 	
 	private Camera camera; 
-	private Image background;
 
 	public GameView(int width, int height, String title) {
 		this.height = height;
@@ -51,9 +48,7 @@ public class GameView {
 		jf.setIgnoreRepaint(true); // Ritas inte om av JVM.       
 		jf.setVisible(true); // Gör allt synligt!
 		canvas.requestFocus(); //Ger vår canvas fokus
-		
-		background = new ImageIcon(getClass().getResource("/background4a.png")).getImage();
-
+	
 		canvas.createBufferStrategy(2); 
 		backBuffer = canvas.getBufferStrategy();
 		}
@@ -115,6 +110,10 @@ public class GameView {
 	
 	public Camera getCamera() {
 		return camera;
+	}
+	
+	public JFrame getJF() {
+		return jf;
 	}
 	
 	//

@@ -5,8 +5,8 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
 
+import gameView.Drawable;
 import main.CollisionChecker;
-import main.Drawable;
 
 public abstract class Entity implements Drawable {
 	private Image image;           // Sprite/Bild
@@ -38,8 +38,8 @@ public abstract class Entity implements Drawable {
 	public void draw(Graphics2D g) {
 		g.drawImage(image,(int)xPos,(int)yPos,null);
 		
-		g.setColor(Color.red);
-		g.drawRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
+		//g.setColor(Color.red);
+		//g.drawRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
 	}
 
 	/**
@@ -49,10 +49,6 @@ public abstract class Entity implements Drawable {
 	public void setDirectionX(int dx){
 		this.dx = dx;
 	}
-
-	/**
-	 * Om den finns eller inte
-	 */
 
 	/**
 	 * Metod som gör förflyttningen, dvs ändrar xPos och yPos

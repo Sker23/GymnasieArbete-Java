@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.HashMap;
@@ -27,6 +28,7 @@ public class GameController implements KeyListener{
 		keyDown.put("down", false); 
 		keyDown.put("up", false);
 		keyDown.put("escape", false);
+		keyDown.put("restart", false);
 	}//sätter gameview gs till gameScreen variablen här
 	//Sätter även upp hashmap som ska hålla koll om en nyckel är nedtryckt eller inte.
 
@@ -62,6 +64,11 @@ public class GameController implements KeyListener{
 		camera.update(player.getX(), player.getY());
 		//System.out.println("xPos: " + camera.getXPos());
 		//System.out.println("yPos: " + camera.getYPos());
+		
+		if (keyDown.get("restart")) {
+			gameModel = new GameModel(gameScreen);
+			lastUpdateTime = System.nanoTime();
+		}
 		
 		if (keyDown.get("escape")) {
 			System.exit(0);
@@ -118,6 +125,10 @@ public class GameController implements KeyListener{
 		if (key == KeyEvent.VK_ESCAPE) {
 			keyDown.put("escape", true);
 		}
+		
+		if(key == KeyEvent.VK_R) {
+			keyDown.put("restart", true);
+		}
 	}
 
 	public void keyReleased(KeyEvent e) {
@@ -132,6 +143,10 @@ public class GameController implements KeyListener{
 		
 		if(key == KeyEvent.VK_W) {
 			keyDown.put("up", false);
+		}
+		
+		if(key == KeyEvent.VK_R) {
+			keyDown.put("restart", false);
 		}
 	}
 }
